@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게임 화면</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+</head>
+<body>
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 1250,
+            height: 590,
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        const game = new Phaser.Game(config);
+
+        function preload() {}
+
+        function create() {
+            const text = this.add.text(625, 295, '게임 시작!', { fontSize: '100px', color:'white',fontFamily:'Arial'
+            });
+            text.setOrigin(0.5, 0.5);
+        }
+
+        function update() {}
+    </script>
+</body>
+</html>

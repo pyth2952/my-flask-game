@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>로그인</title>
+    <style>
+      body {
+        background-color:gainsboro;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .register-text {
+        position:absolute;
+        text-decoration-color: black;
+        color:black;
+        bottom:100px;
+      }
+      ul#flash-messages {
+        list-style: none;
+        padding: 10px 20px;
+        margin: 0;
+        background-color: #f0f8ff;
+        border: 1px solid #b0c4de;
+        border-radius: 5px;
+        color: #333;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: opacity 0.5s ease;
+        opacity: 1;
+        z-index: 1000;
+        font-family:serif;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 250px;
+      }
+      input {
+        padding: 8px;
+        font-size: 14px;
+      }
+      button {
+        padding: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      p {
+        margin-top: 10px;
+      }
+    </style>
+</head>
+<body>
+  <h1>로그인</h1>
+  <form method="POST">
+      아이디: <input type="text" name="userid" required>
+      비밀번호: <input type="password" name="password" required>
+      <button type="submit">로그인</button>
+  </form>
+  <a href="{{ url_for('register') }}" class="register-text">회원가입 하러가기</a>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul id="flash-messages" class="flash-messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <script>
+    window.onload = function() {
+      const flash = document.getElementById("flash-messages");
+      if (flash) {
+        setTimeout(() => {
+          flash.style.opacity = "0";
+          setTimeout(() => {
+            flash.style.display = "none";
+          }, 500);
+        }, 1500);
+      }
+    };
+  </script>
+</body>
+</html>
